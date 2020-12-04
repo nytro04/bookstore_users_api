@@ -20,12 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4902894d-9c85-429f-b274-5e22c97a4009" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/users/user_dto.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/users/user.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/users/users_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users/users_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/users/user_dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dto.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/users_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/users_services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/errors/rest_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errors/rest_error.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +41,9 @@
   <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
   </component>
   <component name="ProjectId" id="1kr0OVxCl8FGrENrDtqtVLZuJ3p" />
   <component name="ProjectLevelVcsManager">
@@ -65,7 +67,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -139,10 +141,15 @@
       <screen x="-1366" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="221" key="GridCell.Tab.0.right/0.0.1440.900/-1366.0.1366.768@-1366.0.1366.768" timestamp="1606447655060" />
-    <state x="-1174" y="23" key="SettingsEditor" timestamp="1606448363164">
+    <state x="-1127" y="125" key="IDE.errors.dialog" timestamp="1607087477394">
       <screen x="-1366" y="0" width="1366" height="768" />
     </state>
-    <state x="-1174" y="23" key="SettingsEditor/0.0.1440.900/-1366.0.1366.768@-1366.0.1366.768" timestamp="1606447643542" />
+    <state x="-1127" y="125" key="IDE.errors.dialog/0.0.1440.900/-1366.0.1366.768@-1366.0.1366.768" timestamp="1607087477394" />
+    <state x="-1174" y="23" key="SettingsEditor" timestamp="1607088405853">
+      <screen x="-1366" y="0" width="1366" height="768" />
+    </state>
+    <state x="-1174" y="23" key="SettingsEditor/0.0.1440.900/-1366.0.1366.768@-1366.0.1366.768" timestamp="1607088405853" />
+    <state x="41" y="-1048" key="SettingsEditor/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1606877833148" />
     <state x="-1174" y="23" key="SettingsEditor/0.23.1440.877/-1366.0.1366.768@-1366.0.1366.768" timestamp="1606448363164" />
   </component>
 </project>
