@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4902894d-9c85-429f-b274-5e22c97a4009" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/datasources/mysql/users_db/users_db.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/date_utils/date_utils.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/errors/rest_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errors/rest_error.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,26 +164,26 @@
       <screen x="-229" y="-1080" width="1920" height="1080" />
     </state>
     <state x="-229" y="-1080" width="1920" height="1080" key="EnvironmentVariablesDialog/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607136668250" />
-    <state width="1878" height="326" key="GridCell.Tab.0.bottom" timestamp="1607142364603">
+    <state width="1878" height="326" key="GridCell.Tab.0.bottom" timestamp="1607305449988">
       <screen x="-229" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1324" height="221" key="GridCell.Tab.0.bottom/0.0.1440.900/-1366.0.1366.768@-1366.0.1366.768" timestamp="1606447655061" />
-    <state width="1878" height="326" key="GridCell.Tab.0.bottom/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607142364603" />
-    <state width="1878" height="326" key="GridCell.Tab.0.center" timestamp="1607142364601">
+    <state width="1878" height="326" key="GridCell.Tab.0.bottom/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607305449988" />
+    <state width="1878" height="326" key="GridCell.Tab.0.center" timestamp="1607305449986">
       <screen x="-229" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1324" height="221" key="GridCell.Tab.0.center/0.0.1440.900/-1366.0.1366.768@-1366.0.1366.768" timestamp="1606447655059" />
-    <state width="1878" height="326" key="GridCell.Tab.0.center/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607142364601" />
-    <state width="1878" height="326" key="GridCell.Tab.0.left" timestamp="1607142364600">
+    <state width="1878" height="326" key="GridCell.Tab.0.center/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607305449986" />
+    <state width="1878" height="326" key="GridCell.Tab.0.left" timestamp="1607305449985">
       <screen x="-229" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1324" height="221" key="GridCell.Tab.0.left/0.0.1440.900/-1366.0.1366.768@-1366.0.1366.768" timestamp="1606447655058" />
-    <state width="1878" height="326" key="GridCell.Tab.0.left/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607142364600" />
-    <state width="1878" height="326" key="GridCell.Tab.0.right" timestamp="1607142364601">
+    <state width="1878" height="326" key="GridCell.Tab.0.left/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607305449985" />
+    <state width="1878" height="326" key="GridCell.Tab.0.right" timestamp="1607305449987">
       <screen x="-229" y="-1080" width="1920" height="1080" />
     </state>
     <state width="1324" height="221" key="GridCell.Tab.0.right/0.0.1440.900/-1366.0.1366.768@-1366.0.1366.768" timestamp="1606447655060" />
-    <state width="1878" height="326" key="GridCell.Tab.0.right/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607142364601" />
+    <state width="1878" height="326" key="GridCell.Tab.0.right/0.0.1440.900/-229.-1080.1920.1080@-229.-1080.1920.1080" timestamp="1607305449987" />
     <state x="-1127" y="125" key="IDE.errors.dialog" timestamp="1607087477394">
       <screen x="-1366" y="0" width="1366" height="768" />
     </state>
