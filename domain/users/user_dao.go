@@ -1,8 +1,7 @@
 package users
 
 import (
-	"fmt"
-	"strings"
+	"github.com/nytro04/bookstore_users_api/utils/mysql_utils"
 
 	"github.com/nytro04/bookstore_users_api/utils/date_utils"
 
@@ -32,11 +31,8 @@ func (user *User) Get() *errors.RestErr {
 
 	result := stmt.QueryRow(user.Id)
 
-	if err := result.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated); err != nil {
-		if strings.Contains(err.Error(), errorNoRows) {
-			return errors.NewNotFoundError(fmt.Sprintf("user %d not found", user.Id))
-		}
-		return errors.NewInternalServerError(fmt.Sprintf("error trying to get user %d: %s", user.Id, err.Error()))
+	if getErr := result.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated); getErr != nil {
+		return mysql_utils.ParseError(getErr)
 	}
 
 	//result := usersDB[user.Id]
@@ -62,17 +58,14 @@ func (user *User) Save() *errors.RestErr {
 
 	user.DateCreated = date_utils.GetNowString()
 
-	insertResult, err := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreated)
-	if err != nil {
-		if strings.Contains(err.Error(), indexUniqueEmail) {
-			return errors.NewBadRequestError(fmt.Sprintf("email %s is already taken", user.Email))
-		}
-		return errors.NewInternalServerError(fmt.Sprintf("error trying to save user: %s", err.Error()))
+	insertResult, saveErr := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreated)
+	if saveErr != nil {
+		return mysql_utils.ParseError(saveErr)
 	}
 
 	userId, err := insertResult.LastInsertId()
 	if err != nil {
-		return errors.NewInternalServerError(fmt.Sprintf("error trying to save user last inser id: %s", err.Error()))
+		return mysql_utils.ParseError(saveErr)
 	}
 	user.Id = userId
 
