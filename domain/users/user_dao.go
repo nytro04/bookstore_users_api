@@ -11,12 +11,13 @@ import (
 )
 
 const (
-	indexUniqueEmail = "email_UNIQUE"
-	errorNoRows      = "no rows in result set"
-	queryInsertUser  = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?,?,?,?);"
-	queryGetUser     = "SELECT id, first_name, last_name, email, date_created FROM users WHERE id=?"
-	queryUpdateUser  = "UPDATE users SET first_name=?, last_name=?, email=? WHERE id=?"
-	queryDeleteUser  = "DELETE FROM users where id=?"
+	indexUniqueEmail      = "email_UNIQUE"
+	errorNoRows           = "no rows in result set"
+	queryInsertUser       = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?,?,?,?);"
+	queryGetUser          = "SELECT id, first_name, last_name, email, date_created FROM users WHERE id=?"
+	queryUpdateUser       = "UPDATE users SET first_name=?, last_name=?, email=? WHERE id=?"
+	queryDeleteUser       = "DELETE FROM users where id=?"
+	queryFindUserByStatus = "SELECT id, first_name, last_name, email, date_created, status FROM users WHERE status=?"
 )
 
 var (
@@ -113,4 +114,18 @@ func (user *User) Delete() *errors.RestErr {
 	}
 
 	return nil
+}
+
+func (user *User) FindByStatus(status string) ([]User, *errors.RestErr) {
+	stmt, err := users_db.Client.Prepare(queryFindUserByStatus)
+	if err != nil {
+		return nil, errors.NewInternalServerError(err.Error())
+	}
+	defer stmt.Close()
+
+	rows, err := stmt.Query(status)
+	if err != nil {
+		return nil, errors.NewInternalServerError(err.Error())
+	}
+	defer rows.Close()
 }
