@@ -1,9 +1,9 @@
 package users
 
 import (
-	"github.com/nytro04/bookstore_users_api/utils/mysql_utils"
+	"fmt"
 
-	"github.com/nytro04/bookstore_users_api/utils/date_utils"
+	"github.com/nytro04/bookstore_users_api/utils/mysql_utils"
 
 	"github.com/nytro04/bookstore_users_api/datasources/mysql/users_db"
 
@@ -13,8 +13,8 @@ import (
 const (
 	indexUniqueEmail      = "email_UNIQUE"
 	errorNoRows           = "no rows in result set"
-	queryInsertUser       = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?,?,?,?);"
-	queryGetUser          = "SELECT id, first_name, last_name, email, date_created FROM users WHERE id=?"
+	queryInsertUser       = "INSERT INTO users(first_name, last_name, email, date_created, status, password) VALUES(?,?,?,?,?,?);"
+	queryGetUser          = "SELECT id, first_name, last_name, email, date_created, status FROM users WHERE id=?"
 	queryUpdateUser       = "UPDATE users SET first_name=?, last_name=?, email=? WHERE id=?"
 	queryDeleteUser       = "DELETE FROM users where id=?"
 	queryFindUserByStatus = "SELECT id, first_name, last_name, email, date_created, status FROM users WHERE status=?"
@@ -35,20 +35,9 @@ func (user *User) Get() *errors.RestErr {
 
 	result := stmt.QueryRow(user.Id)
 
-	if getErr := result.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated); getErr != nil {
+	if getErr := result.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated, &user.Status); getErr != nil {
 		return mysql_utils.ParseError(getErr)
 	}
-
-	//result := usersDB[user.Id]
-	//if result == nil {
-	//	return errors.NewNotFoundError(fmt.Sprintf("user %d not found", user.Id))
-	//}
-	//
-	//user.Id = result.Id
-	//user.FirstName = result.FirstName
-	//user.LastName = result.LastName
-	//user.Email = result.Email
-	//user.DateCreated = result.DateCreated
 
 	return nil
 }
@@ -60,9 +49,7 @@ func (user *User) Save() *errors.RestErr {
 	}
 	defer stmt.Close()
 
-	user.DateCreated = date_utils.GetNowString()
-
-	insertResult, saveErr := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreated)
+	insertResult, saveErr := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreated, user.Status, user.Password)
 	if saveErr != nil {
 		return mysql_utils.ParseError(saveErr)
 	}
@@ -73,17 +60,6 @@ func (user *User) Save() *errors.RestErr {
 	}
 	user.Id = userId
 
-	//current := usersDB[user.Id]
-	//if current != nil {
-	//	if current.Email == user.Email {
-	//		return errors.NewBadRequestError(fmt.Sprintf("email %s already exist", user.Email))
-	//	}
-	//	return errors.NewBadRequestError(fmt.Sprintf("user %d already exist", user.Id))
-	//}
-	//
-	//user.DateCreated = date_utils.GetNowString()
-	//
-	//usersDB[user.Id] = user
 	return nil
 }
 
@@ -128,4 +104,18 @@ func (user *User) FindByStatus(status string) ([]User, *errors.RestErr) {
 		return nil, errors.NewInternalServerError(err.Error())
 	}
 	defer rows.Close()
+
+	results := make([]User, 0)
+	for rows.Next() {
+		var user User
+		if err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated, &user.Status); err != nil {
+			return nil, mysql_utils.ParseError(err)
+		}
+		results = append(results, user)
+	}
+	if len(results) == 0 {
+		return nil, errors.NewNotFoundError(fmt.Sprintf("no users matching status %s", status))
+	}
+
+	return results, nil
 }
