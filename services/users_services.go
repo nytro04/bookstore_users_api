@@ -2,6 +2,7 @@ package services
 
 import (
 	"github.com/nytro04/bookstore_users_api/domain/users"
+	"github.com/nytro04/bookstore_users_api/utils/crypto_utils"
 	"github.com/nytro04/bookstore_users_api/utils/date_utils"
 	"github.com/nytro04/bookstore_users_api/utils/errors"
 )
@@ -21,6 +22,14 @@ func CreateUser(user users.User) (*users.User, *errors.RestErr) {
 
 	user.Status = users.StatusActive
 	user.DateCreated = date_utils.GetNowDBFormat()
+	user.Password = crypto_utils.GetMd5(user.Password) // this will be replaced with HashedPassword()
+
+	//user.Password, err = crypto_utils.HashPassword(user.Password)
+	//user.Password, _ = crypto_utils.HashPassword(user.Password)
+
+	//if err != nil {
+	//	return nil, err
+	//}
 	if err := user.Save(); err != nil {
 		return nil, err
 	}
@@ -64,7 +73,7 @@ func DeleteUser(userId int64) *errors.RestErr {
 	return user.Delete()
 }
 
-func Search(status string) ([]users.User, *errors.RestErr) {
+func Search(status string) (users.Users, *errors.RestErr) {
 	dao := &users.User{}
 	return dao.FindByStatus(status)
 }
