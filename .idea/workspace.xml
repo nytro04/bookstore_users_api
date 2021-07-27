@@ -19,21 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4902894d-9c85-429f-b274-5e22c97a4009" name="Default Changelist" comment="feat: add handle mysql error">
-      <change afterPath="$PROJECT_DIR$/domain/users/user.go" afterDir="false" />
+    <list default="true" id="4902894d-9c85-429f-b274-5e22c97a4009" name="Default Changelist" comment="feat: add email validation method for user">
+      <change afterPath="$PROJECT_DIR$/datasources/mysql/users_db/users_db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/date_utils/date_utils.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/application.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/application.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/url_mappings.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/url_mappings.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/users/users_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users/users_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasources/mysql/users_db/users_db.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/users/user_dto.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/users/user_marshaller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/users/user.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/services/users_services.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/users_services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/crypto_utils/crypto_utils.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/date_utils/date_utils.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/errors/rest_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errors/rest_error.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mysql_utils/mysql_utils.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,9 +157,15 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="feat: add handle mysql error" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add handle mysql error" />
+    <MESSAGE value="feat: init create user controller, barebones services and error handling file" />
+    <MESSAGE value="feat: add email validation method for user" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add email validation method for user" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="533" y="170" key="#com.intellij.ide.util.MemberChooser" timestamp="1626682646013">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="533" y="170" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1626682646013" />
     <state width="1318" height="120" key="GridCell.Tab.0.bottom" timestamp="1626441764795">
       <screen x="-1360" y="61" width="1360" height="768" />
     </state>
@@ -186,5 +186,16 @@
     </state>
     <state width="1318" height="120" key="GridCell.Tab.0.right/0.0.1440.900/-1360.61.1360.768@-1360.61.1360.768" timestamp="1626441764794" />
     <state width="1179" height="99" key="GridCell.Tab.0.right/0.25.1440.875/-1360.86.1360.743@-1360.86.1360.743" timestamp="1626440301986" />
+    <state x="-1180" y="81" key="SettingsEditor" timestamp="1627017537797">
+      <screen x="-1360" y="61" width="1360" height="768" />
+    </state>
+    <state x="252" y="-814" key="SettingsEditor/0.0.1440.900/-79.-900.1600.900@-79.-900.1600.900" timestamp="1626857544022" />
+    <state x="-1180" y="81" key="SettingsEditor/0.25.1440.875/-1360.61.1360.768@-1360.61.1360.768" timestamp="1627017537797" />
+    <state x="252" y="-791" key="SettingsEditor/0.25.1440.875/-79.-875.1600.875@-79.-875.1600.875" timestamp="1626857650715" />
+    <state x="252" y="-814" key="SettingsEditor/0.25.1440.875/-79.-900.1600.900@-79.-900.1600.900" timestamp="1626857281615" />
+    <state x="-1080" y="178" key="Vcs.Push.Dialog.v2" timestamp="1626846104533">
+      <screen x="-1360" y="61" width="1360" height="768" />
+    </state>
+    <state x="-1080" y="178" key="Vcs.Push.Dialog.v2/0.0.1440.900/-1360.61.1360.768@-1360.61.1360.768" timestamp="1626846104533" />
   </component>
 </project>
