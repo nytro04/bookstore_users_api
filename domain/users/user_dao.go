@@ -1,45 +1,57 @@
 package users
 
 import (
-	"fmt"
+	"github.com/nytro04/bookstore_users_api/utils/mysql_utils"
+
+	"github.com/nytro04/bookstore_users_api/datasources/mysql/users_db"
 
 	"github.com/nytro04/bookstore_users_api/utils/date_utils"
 
 	"github.com/nytro04/bookstore_users_api/utils/errors"
 )
 
-var (
-	usersDB = make(map[int64]*User)
+const (
+	queryInsertUser = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?, ?, ?, ?)"
+	queryGetUser    = "SELECT id, first_name, last_name, email, date_created from users WHERE id=?"
 )
 
 //we use *User i.e pointer to the user, cos we want to modify
 // the user itself and not a copy (User) of the user
 func (user *User) Get() *errors.RestErr {
-	result := usersDB[user.Id]
-	if result == nil {
-		return errors.NewNotFoundError(fmt.Sprintf("user %d not found", user.Id))
+	stmt, err := users_db.UsersDB.Prepare((queryGetUser))
+	if err != nil {
+		return errors.NewInternalServerError(err.Error())
 	}
+	defer stmt.Close()
 
-	user.Id = result.Id
-	user.FirstName = result.FirstName
-	user.LastName = result.LastName
-	user.Email = result.Email
-	user.DateCreated = result.DateCreated
+	result := stmt.QueryRow(user.Id)
+
+	if getErr := result.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated); getErr != nil {
+		return mysql_utils.ParseError(getErr)
+	}
 
 	return nil
 }
 
 func (user *User) Save() *errors.RestErr {
-	current := usersDB[user.Id]
-	if current != nil {
-		if current.Email == user.Email {
-			return errors.NewBadRequestError(fmt.Sprintf("%s is already registered", user.Email))
-		}
-		return errors.NewBadRequestError(fmt.Sprintf("user %d already exist", user.Id))
+	stmt, err := users_db.UsersDB.Prepare(queryInsertUser)
+	if err != nil {
+		return errors.NewInternalServerError(err.Error())
 	}
+	defer stmt.Close()
 
 	user.DateCreated = date_utils.GetNowString()
 
-	usersDB[user.Id] = user
+	insertResult, saveErr := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreated)
+	if saveErr != nil {
+		return mysql_utils.ParseError(saveErr)
+	}
+
+	userId, err := insertResult.LastInsertId()
+	if err != nil {
+		return mysql_utils.ParseError(err)
+	}
+
+	user.Id = userId
 	return nil
 }
