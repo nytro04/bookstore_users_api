@@ -26,7 +26,6 @@ func Create(c *gin.Context) {
 	if err := c.ShouldBindJSON(&user); err != nil {
 		restErr := errors.NewBadRequestError("Invalid json body")
 		c.JSON(restErr.Status, restErr)
-		fmt.Println(user)
 		return
 	}
 
@@ -98,7 +97,7 @@ func Delete(c *gin.Context)  {
 func Search(c *gin.Context) {
 	status := c.Query("status")
 
-	users, err := services.FindByStatus(status)
+	users, err := services.Search(status)
 	if err != nil {
 		c.JSON(err.Status, err)
 	}

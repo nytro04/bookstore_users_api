@@ -6,6 +6,12 @@ import (
 	"github.com/nytro04/bookstore_users_api/utils/errors"
 )
 
+const (
+	StatusActive = "active"
+)
+
+// the dto consist of the data that is going to be transferred from the persistence layer to the application and backwards
+
 type User struct {
 	Id          int64  `json:"id"`
 	FirstName   string `json:"first_name"`
@@ -24,5 +30,10 @@ func (user *User) Validate() *errors.RestErr {
 	if user.Email == "" {
 		return errors.NewBadRequestError("Please provide a valid email address")
 	}
-	return nil
+
+	user.Password = strings.TrimSpace(user.Password)
+	if user.Password == "" {
+		return errors.NewBadRequestError("User password field is required")
+	}
+	    return nil
 }
