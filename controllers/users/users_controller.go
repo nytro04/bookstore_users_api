@@ -1,7 +1,6 @@
 package users
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -13,7 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func getUserId(userIdParam string)(int64, *errors.RestErr){
+func getUserId(userIdParam string) (int64, *errors.RestErr) {
 	userId, userErr := strconv.ParseInt(userIdParam, 10, 64)
 	if userErr != nil {
 		return 0, errors.NewBadRequestError("user id should be a number")
@@ -80,8 +79,8 @@ func Update(c *gin.Context) {
 	c.JSON(http.StatusOK, result)
 }
 
-func Delete(c *gin.Context)  {
-		userId, idErr := getUserId(c.Param("user_id"))
+func Delete(c *gin.Context) {
+	userId, idErr := getUserId(c.Param("user_id"))
 	if idErr != nil {
 		c.JSON(idErr.Status, idErr)
 		return

@@ -2,6 +2,7 @@ package services
 
 import (
 	"github.com/nytro04/bookstore_users_api/domain/users"
+	"github.com/nytro04/bookstore_users_api/utils/bcrypt_utils"
 	"github.com/nytro04/bookstore_users_api/utils/date_utils"
 	"github.com/nytro04/bookstore_users_api/utils/errors"
 )
@@ -22,6 +23,11 @@ func CreateUser(user users.User) (*users.User, *errors.RestErr) {
 
 	user.Status = users.StatusActive
 	user.DateCreated = date_utils.GetNowDBFormat()
+	var errPassword error
+	user.Password, errPassword = bcrypt_utils.HashedPassword(user.Password)
+	if errPassword != nil {
+		return nil, errors.NewBadRequestError("failed to hash password")
+	}
 	if err := user.Save(); err != nil {
 		return nil, err
 	}
@@ -48,8 +54,7 @@ func UpdateUser(isPartial bool, user users.User) (*users.User, *errors.RestErr) 
 		current.FirstName = user.FirstName
 		current.LastName = user.LastName
 		current.Email = user.Email
-	}
-
+	} 
 
 	if err := current.Update(); err != nil {
 		return nil, err
@@ -63,7 +68,7 @@ func DeleteUser(userId int64) *errors.RestErr {
 	return user.Delete()
 }
 
-func Search(status string) ([]users.User, *errors.RestErr)  {
-	dao := &users.User{}
-	return dao.FindByStatus(status)
+func Search(status string) ([]users.User, *errors.RestErr) {
+	user := &users.User{}
+	return user.FindByStatus(status)
 }

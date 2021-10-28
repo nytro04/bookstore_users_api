@@ -21,7 +21,7 @@ func ParseError(err error) *errors.RestErr {
 	}
 	switch sqlErr.Number {
 	case 1062:
-		return errors.NewBadRequestError("invalid data")
+		return errors.NewBadRequestError("data already exist ")
 	}
 
 	return errors.NewInternalServerError("error processing data")
