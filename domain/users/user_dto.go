@@ -18,9 +18,11 @@ type User struct {
 	LastName    string `json:"last_name"`
 	Email       string `json:"email"`
 	DateCreated string `json:"date_created"`
-	Status	string `json:"status"`
-	Password string `json:"-"`
+	Status      string `json:"status"`
+	Password    string `json:"password"`
 }
+
+type Users []User
 
 func (user *User) Validate() *errors.RestErr {
 	user.FirstName = strings.TrimSpace(user.FirstName)
@@ -32,8 +34,9 @@ func (user *User) Validate() *errors.RestErr {
 	}
 
 	user.Password = strings.TrimSpace(user.Password)
+
 	if user.Password == "" {
 		return errors.NewBadRequestError("User password field is required")
 	}
-	    return nil
+	return nil
 }
